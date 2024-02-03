@@ -1,0 +1,15 @@
+/* CSS for Project TTT */
+
+.container {
+    display: flex;
+    width: 30em;
+    height: 30em;
+    border: solid 1px red;
+    padding: 2em;
+}
+
+.space {
+    width: 9em;
+    height: 9em;
+    border: solid 1px blue;
+}
