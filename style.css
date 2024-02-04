@@ -2,14 +2,16 @@
 
 .container {
     display: flex;
-    max-width: 30em;
-    max-height: 30em;
+    width: 27.4em;
+    height: 27.4em;
     border: solid 1px red;
     padding: 2em;
+    flex-flow: wrap;
 }
 
 .space {
-    flex-flow: wrap;
+    margin-right: 0em;
+    margin-bottom: 0em;
     width: 9em;
     height: 9em;
     border: solid 1px gold;
