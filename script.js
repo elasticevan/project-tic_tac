@@ -33,8 +33,11 @@ for (let i = 0; i <= spaces.length; i++) {
 
 function win(){
     for (let win of winners) {
-        if (win.forEach(space => space.style.backgroundColor = "red") == true)
-        console.log("win")
+        for (let combo of win) {
+            if (combo.style.backgroundColor === "red") {
+                console.log("red wins")
+            }
+        }
     }
 }
 
@@ -45,7 +48,8 @@ function turn(player) {
             btn.style.backgroundColor = "red";
         } else if (player === "two") {
             btn.style.backgroundColor = "blue";
-        } console.log(player)
+        } console.log(player);
+        win();
     }));
     
 }
