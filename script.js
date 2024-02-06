@@ -5,22 +5,20 @@ const container = document.querySelector(".container");
 const toggle = document.querySelector(".toggle");
 
 //create spaces for board
-for (let i = 0; i < 9; i++) {
-    const tile = document.createElement("div");
-    tile.classList = "space";
-    container.appendChild(tile)
+function board(){
+    for (let i = 0; i < 9; i++) {
+        const tile = document.createElement("div");
+        tile.classList = "space";
+        container.appendChild(tile)
+    }
 }
+board();
 
 //declare all spaces
 const spaces = document.querySelectorAll(".space");
 
-//color/player toggle
-
-
-
 //test for win
 let winners;
-
 for (let i = 0; i <= spaces.length; i++) {
     winners = [
         [spaces[0], spaces[1], spaces[2]],
@@ -50,10 +48,14 @@ function checkForWin() {
     for (let win of winners) {
         for (let i = 0; i < win.length; i++) {
             if(win[0].style.backgroundColor === "red" && win[1].style.backgroundColor === "red" && win[2].style.backgroundColor === "red") {
-                console.log("red wins")
+                console.log("red wins");
+                container.innerHTML = "";
+                board();
             }
              else if(win[0].style.backgroundColor === "blue" && win[1].style.backgroundColor === "blue" && win[2].style.backgroundColor === "blue") {
-                console.log("blue wins")
+                console.log("blue wins");
+                container.innerHTML = "";
+                board();
             }
             
         }
@@ -80,18 +82,11 @@ function turn(player) {
     //create function for color change
     function colorChange(e) {
         player = (player === "one") ? "two" : "one";
-        if (player === "one") {
-            e.target.style.backgroundColor = "red";
-            toggle.style.backgroundColor = "blue";
-            toggle.style.justifyContent = "flex-end";
-            
-        } else if (player === "two") {
-            e.target.style.backgroundColor = "blue";
-            toggle.style.backgroundColor = "red";
-            toggle.style.justifyContent = "flex-start";
-        }
-        checkForWin();
+        e.target.style.backgroundColor = (player === "one") ? "red" : "blue";
+        toggle.style.backgroundColor = (player === "one") ? "blue" : "red"; 
+        toggle.style.justifyContent = (player === "one") ? "flex-end" : "flex-start";
         e.target.removeEventListener("click", colorChange)
+        checkForWin();
     }
     //call for event listener
     for (const space of spaces) {
