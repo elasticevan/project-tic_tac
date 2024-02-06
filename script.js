@@ -27,17 +27,18 @@ for (let i = 0; i <= spaces.length; i++) {
         [spaces[0], spaces[3], spaces[6]],
         [spaces[0], spaces[4], spaces[8]],
         [spaces[1], spaces[4], spaces[7]],
-        [spaces[2], spaces[5], spaces[8]]
+        [spaces[2], spaces[4], spaces[6]]
     ]
 }
 
 function win(){
     for (let win of winners) {
-        for (let combo of win) {
-            if (combo.style.backgroundColor === "red") {
-                console.log("red wins")
-            }
-        }
+        const [a, b, c] = win;
+        if (a.style.backgroundColor === "red" && b.style.backgroundColor === "red" && c.style.backgroundColor === "red") {
+            console.log("red wins")
+        } else if (a.style.backgroundColor === "blue" && b.style.backgroundColor === "blue" && c.style.backgroundColor === "blue") {
+            console.log("blue wins")
+        };
     }
 }
 
@@ -48,7 +49,8 @@ function turn(player) {
             btn.style.backgroundColor = "red";
         } else if (player === "two") {
             btn.style.backgroundColor = "blue";
-        } console.log(player);
+        } 
+        console.log(player);
         win();
     }));
     
