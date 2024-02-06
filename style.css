@@ -16,3 +16,22 @@
     height: 9em;
     border: solid 1px gold;
 }
+
+.toggle {
+    display: flex;
+    justify-content: flex-start;
+    width: 5em;
+    height: 3em;
+    border: solid 1px black;
+    border-radius: 3em;
+    background-color: red;
+}
+
+.switch {
+    display: flex;
+    width: 2.5em;
+    height: 3em;
+    border: solid 1px white;
+    background-color: yellow;
+    border-radius: 20px;
+}

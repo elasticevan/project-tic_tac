@@ -1,6 +1,8 @@
 // JS for Project TTT 
 
 const container = document.querySelector(".container");
+//toggle 
+const toggle = document.querySelector(".toggle");
 
 //create spaces for board
 for (let i = 0; i < 9; i++) {
@@ -25,12 +27,13 @@ for (let i = 0; i <= spaces.length; i++) {
         [spaces[3], spaces[4], spaces[5]],
         [spaces[6], spaces[7], spaces[8]],
         [spaces[0], spaces[3], spaces[6]],
-        [spaces[0], spaces[4], spaces[8]],
         [spaces[1], spaces[4], spaces[7]],
+        [spaces[2], spaces[5], spaces[8]],
+        [spaces[0], spaces[4], spaces[8]],
         [spaces[2], spaces[4], spaces[6]]
     ]
 }
-
+/* help from chatGPT
 function win(){
     for (let win of winners) {
         const [a, b, c] = win;
@@ -41,19 +44,60 @@ function win(){
         };
     }
 }
-
+*/
+// my iteration/understanding
+function checkForWin() {
+    for (let win of winners) {
+        for (let i = 0; i < win.length; i++) {
+            if(win[0].style.backgroundColor === "red" && win[1].style.backgroundColor === "red" && win[2].style.backgroundColor === "red") {
+                console.log("red wins")
+            }
+             else if(win[0].style.backgroundColor === "blue" && win[1].style.backgroundColor === "blue" && win[2].style.backgroundColor === "blue") {
+                console.log("blue wins")
+            }
+            
+        }
+    }
+}
+/*
 function turn(player) {
-    spaces.forEach(btn =>btn.addEventListener("click", () => {
+    for (const space of spaces) {
+        space.addEventListener("click", e => {
+            player = (player === "one") ? "two" : "one";
+            if (player === "one") {
+                space.style.backgroundColor = "red";
+            } else if (player === "two") {
+                space.style.backgroundColor = "blue";
+            } 
+            space.removeEventListener("click", e)
+            console.log(player);
+            checkForWin();
+        })
+    }
+}
+*/
+function turn(player) {
+    //create function for color change
+    function colorChange(e) {
         player = (player === "one") ? "two" : "one";
         if (player === "one") {
-            btn.style.backgroundColor = "red";
+            e.target.style.backgroundColor = "red";
+            toggle.style.backgroundColor = "blue";
+            toggle.style.justifyContent = "flex-end";
+            
         } else if (player === "two") {
-            btn.style.backgroundColor = "blue";
-        } 
-        console.log(player);
-        win();
-    }));
-    
+            e.target.style.backgroundColor = "blue";
+            toggle.style.backgroundColor = "red";
+            toggle.style.justifyContent = "flex-start";
+        }
+        checkForWin();
+        e.target.removeEventListener("click", colorChange)
+    }
+    //call for event listener
+    for (const space of spaces) {
+        space.addEventListener("click", colorChange);
+    }
 }
-
 turn()
+
+
