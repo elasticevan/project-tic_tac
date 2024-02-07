@@ -97,6 +97,9 @@ spaces.forEach(space => space.addEventListener("click", colorChange))
 function reset() {
     container.innerHTML = "";
     board();
-    player = "one"
+    player = "one";
+    toggle.style.backgroundColor = "red";
+    toggle.style.justifyContent = "flex-start";
+    
     spaces.forEach(space => space.addEventListener("click", colorChange))
 }
