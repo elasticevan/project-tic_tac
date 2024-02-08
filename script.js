@@ -37,6 +37,7 @@ board();
 /* help from chatGPT
 function win(){
     for (let win of winners) {
+        //cool option to split into array
         const [a, b, c] = win;
         if (a.style.backgroundColor === "red" && b.style.backgroundColor === "red" && c.style.backgroundColor === "red") {
             console.log("red wins")
@@ -63,28 +64,13 @@ function checkForWin() {
         }
     }
 }
-/*
-function turn(player) {
-    for (const space of spaces) {
-        space.addEventListener("click", e => {
-            player = (player === "one") ? "two" : "one";
-            if (player === "one") {
-                space.style.backgroundColor = "red";
-            } else if (player === "two") {
-                space.style.backgroundColor = "blue";
-            } 
-            space.removeEventListener("click", e)
-            console.log(player);
-            checkForWin();
-        })
-    }
-}
-*/
 
 // redo so event listener is separate
 
 //create function for color change !!! redo this so upon reset we're back to player one everytime
-let player;
+let player = "one";
+
+/*
 function colorChange(e) {
     player = (player === "one") ? "two" : "one";
     e.target.style.backgroundColor = (player === "one") ? "red" : "blue";
@@ -93,23 +79,27 @@ function colorChange(e) {
     e.target.removeEventListener("click", colorChange)
     checkForWin();
 }
+
+*/
+//
+function colorChange(e){
+    if(player === "one") {
+        e.target.style.backgroundColor = "red";
+        toggle.style.backgroundColor = "red";
+        toggle.style.justifyContent = "flex-start";
+    } else if (player === "two") {
+        e.target.style.backgroundColor = "blue";
+        toggle.style.backgroundColor = "blue";
+        toggle.style.justifyContent = "flex-end";
+    }
+    player = (player === "one") ? "two" : "one";
+    e.target.removeEventListener("click", colorChange);
+    checkForWin();
+}
 //call for event listener
 spaces.forEach(space => space.addEventListener("click", colorChange))
 
-//reset func, not working with toggle and colors
-/*
-function reset() {
-    container.innerHTML = "";
-    board();
-    player = "one";
-    toggle.style.backgroundColor = "red";
-    toggle.style.justifyContent = "flex-start";
-    
-    spaces.forEach(space => space.addEventListener("click", colorChange))
-}
-
-*/
-
+//popup functions
 function openPopUp() {
         popup.classList.toggle("open-popup");
 }
@@ -117,7 +107,11 @@ function closePopUp() {
         popup.classList.remove("open-popup");
 }
 
+//resets game !!! not working for when blue wins, toggle stays at blue
 function reset() {
+    toggle.style.backgroundColor = "red";
+    toggle.style.justifyContent = "flex-start";
+    player = "one"
     closePopUp();
     container.innerHTML = "";
     board();
