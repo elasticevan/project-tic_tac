@@ -5,5 +5,6 @@
 3. toggle player function
     a. create image showing who's turn it is
 4. read for win or draw
-5. reset board when a winner is decided
+5. create popup window when game is over, include reset button
+6. reset board when a winner is decided
     a. reset all spaces and clear event listeners?

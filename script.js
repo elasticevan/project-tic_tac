@@ -83,7 +83,7 @@ function turn(player) {
 
 // redo so event listener is separate
 
-//create function for color change
+//create function for color change !!! redo this so upon reset we're back to player one everytime
 let player;
 function colorChange(e) {
     player = (player === "one") ? "two" : "one";
@@ -110,11 +110,9 @@ function reset() {
 
 */
 
-
 function openPopUp() {
         popup.classList.toggle("open-popup");
 }
-
 function closePopUp() {
         popup.classList.remove("open-popup");
 }
