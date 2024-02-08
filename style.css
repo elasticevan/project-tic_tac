@@ -34,3 +34,50 @@
     background-color: yellow;
     border-radius: 50%;
 }
+
+.popup{
+    width: 400px;
+    height: 400px;
+    background: gold;
+    border: solid 1px black;
+    border-radius: 6px;
+    position: absolute;
+    /* starts from top of page at 0% (middle of page at 50%) */
+    top: 0;
+    left: 50%;
+    /* makes popup shrink to 0.1 scale*/
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    /* hides element, duh doi */
+    visibility: hidden;
+    transition: transform 0.3s, top 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.popup,
+.result {
+    font-size: x-large;
+    font-weight: 500;
+    color: #333;
+}
+.open-popup{
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+}
+
+.popup button{
+    width: 100%;
+    padding: 10px 0;
+    background: black;
+    color: #fff;
+    outline: none;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}

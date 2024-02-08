@@ -3,6 +3,9 @@
 const container = document.querySelector(".container");
 //toggle 
 const toggle = document.querySelector(".toggle");
+//popup
+let popup = document.querySelector(".popup");
+let result = document.querySelector(".popup .result");
 
 //create spaces for board
 let winners;
@@ -49,12 +52,12 @@ function checkForWin() {
     for (let win of winners) {
         for (let i = 0; i < win.length; i++) {
             if(win[0].style.backgroundColor === "red" && win[1].style.backgroundColor === "red" && win[2].style.backgroundColor === "red") {
-                console.log("red wins");
-                reset();
+                result.innerHTML = "red wins";
+                openPopUp()
             }
              else if(win[0].style.backgroundColor === "blue" && win[1].style.backgroundColor === "blue" && win[2].style.backgroundColor === "blue") {
-                console.log("blue wins");
-                reset();
+                result.innerHTML = "blue wins";
+                openPopUp()
             }
             
         }
@@ -94,6 +97,7 @@ function colorChange(e) {
 spaces.forEach(space => space.addEventListener("click", colorChange))
 
 //reset func, not working with toggle and colors
+/*
 function reset() {
     container.innerHTML = "";
     board();
@@ -101,5 +105,23 @@ function reset() {
     toggle.style.backgroundColor = "red";
     toggle.style.justifyContent = "flex-start";
     
+    spaces.forEach(space => space.addEventListener("click", colorChange))
+}
+
+*/
+
+
+function openPopUp() {
+        popup.classList.toggle("open-popup");
+}
+
+function closePopUp() {
+        popup.classList.remove("open-popup");
+}
+
+function reset() {
+    closePopUp();
+    container.innerHTML = "";
+    board();
     spaces.forEach(space => space.addEventListener("click", colorChange))
 }
