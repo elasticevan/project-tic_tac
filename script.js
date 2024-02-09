@@ -10,6 +10,7 @@ let result = document.querySelector(".popup .result");
 //create spaces for board
 let winners;
 let spaces;
+
 function board(){
     for (let i = 0; i < 9; i++) {
         const tile = document.createElement("div");
@@ -32,6 +33,7 @@ function board(){
         ]
     }
 }
+
 board();
 
 /* help from chatGPT
@@ -94,7 +96,11 @@ function colorChange(e){
     checkForWin();
 }
 //call for event listener
-spaces.forEach(space => space.addEventListener("click", colorChange))
+spaces.forEach(space => space.addEventListener("click", colorChange));
+
+//switch func
+const switcher = document.querySelector(".switch");
+switcher.addEventListener("click", () => {toggle.classList.toggle("color")})
 
 //popup functions
 function openPopUp() {

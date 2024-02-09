@@ -38,6 +38,7 @@
     border: solid 1px black;
     background-color: yellow;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .popup{
