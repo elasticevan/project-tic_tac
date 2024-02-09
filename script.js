@@ -81,17 +81,14 @@ function colorChange(e) {
 }
 
 */
-//
+// redo, not working on reset, if red wins
 function colorChange(e){
     if(player === "one") {
         e.target.style.backgroundColor = "red";
-        toggle.style.backgroundColor = "red";
-        toggle.style.justifyContent = "flex-start";
     } else if (player === "two") {
         e.target.style.backgroundColor = "blue";
-        toggle.style.backgroundColor = "blue";
-        toggle.style.justifyContent = "flex-end";
     }
+    toggle.classList.toggle("color")
     player = (player === "one") ? "two" : "one";
     e.target.removeEventListener("click", colorChange);
     checkForWin();
@@ -107,11 +104,8 @@ function closePopUp() {
         popup.classList.remove("open-popup");
 }
 
-//resets game !!! not working for when blue wins, toggle stays at blue
+//resets game
 function reset() {
-    toggle.style.backgroundColor = "red";
-    toggle.style.justifyContent = "flex-start";
-    player = "one"
     closePopUp();
     container.innerHTML = "";
     board();
