@@ -56,11 +56,11 @@ function checkForWin() {
         for (let i = 0; i < win.length; i++) {
             if(win[0].style.backgroundColor === "red" && win[1].style.backgroundColor === "red" && win[2].style.backgroundColor === "red") {
                 result.innerHTML = "red wins";
-                openPopUp()
+                popUp("open")
             }
              else if(win[0].style.backgroundColor === "blue" && win[1].style.backgroundColor === "blue" && win[2].style.backgroundColor === "blue") {
                 result.innerHTML = "blue wins";
-                openPopUp()
+                popUp("open")
             }
             
         }
@@ -106,21 +106,20 @@ const switcher = document.querySelector(".switch");
 switcher.addEventListener("click", colorToggle);
 
 //popup functions
-function openPopUp() {
+function popUp(state) {
+    if(state === "open") {
         popup.classList.toggle("open-popup");
         spaces.forEach(space => space.removeEventListener("click", colorChange));
-}
-function closePopUp() {
+    } else if (state === "close") {
         popup.classList.remove("open-popup");
-        switcher.addEventListener("click", colorToggle);
-        spaces.forEach(space => space.addEventListener("click", colorChange));
+    }
 }
 
 //resets game
 function reset() {
-    closePopUp();
+    popUp("close")
     container.innerHTML = "";
     board();
-    spaces.forEach(space => space.addEventListener("click", colorChange))
-    
+    spaces.forEach(space => space.addEventListener("click", colorChange));
+    switcher.addEventListener("click", colorToggle);
 }
