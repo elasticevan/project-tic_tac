@@ -3,14 +3,14 @@
 const container = document.querySelector(".container");
 //toggle 
 const toggle = document.querySelector(".toggle");
+const switcher = document.querySelector(".switch");
 //popup
-let popup = document.querySelector(".popup");
-let result = document.querySelector(".popup .result");
+const popup = document.querySelector(".popup");
+const result = document.querySelector(".popup .result");
 
 //create spaces for board
 let winners;
 let spaces;
-
 function board(){
     for (let i = 0; i < 9; i++) {
         const tile = document.createElement("div");
@@ -32,8 +32,9 @@ function board(){
             [spaces[2], spaces[4], spaces[6]]
         ]
     }
+    switcher.addEventListener("click", colorToggle);
+    spaces.forEach(space => space.addEventListener("click", colorChange)); 
 }
-
 board();
 
 /* help from chatGPT
@@ -66,12 +67,6 @@ function checkForWin() {
         }
     }
 }
-
-// redo so event listener is separate
-
-//create function for color change !!! redo this so upon reset we're back to player one everytime
-let player = "one";
-
 /*
 function colorChange(e) {
     player = (player === "one") ? "two" : "one";
@@ -81,8 +76,12 @@ function colorChange(e) {
     e.target.removeEventListener("click", colorChange)
     checkForWin();
 }
-
 */
+//switch func
+function colorToggle(){
+    toggle.classList.toggle("color")
+};
+
 // redo, not working on reset, if red wins
 function colorChange(e){
     if(toggle.classList.contains("color")) {
@@ -94,32 +93,21 @@ function colorChange(e){
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
     checkForWin();
-}
-//call for event listener
-spaces.forEach(space => space.addEventListener("click", colorChange));
+};
 
-//switch func
-function colorToggle(){
-    toggle.classList.toggle("color")
-}
-const switcher = document.querySelector(".switch");
-switcher.addEventListener("click", colorToggle);
-
-//popup functions
+//popup function
 function popUp(state) {
     if(state === "open") {
         popup.classList.toggle("open-popup");
+        //reset button
+        const resetBtn = document.querySelector("#reset");
+        resetBtn.addEventListener("click", () => popUp("close"));
+        //remove clicks on spaces
         spaces.forEach(space => space.removeEventListener("click", colorChange));
     } else if (state === "close") {
         popup.classList.remove("open-popup");
+        container.innerHTML = "";
+        board();
     }
 }
 
-//resets game
-function reset() {
-    popUp("close")
-    container.innerHTML = "";
-    board();
-    spaces.forEach(space => space.addEventListener("click", colorChange));
-    switcher.addEventListener("click", colorToggle);
-}
