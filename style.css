@@ -15,6 +15,7 @@
     width: 9em;
     height: 9em;
     border: solid 1px gold;
+    cursor:pointer;
 }
 
 .toggle {

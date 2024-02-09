@@ -85,29 +85,35 @@ function colorChange(e) {
 */
 // redo, not working on reset, if red wins
 function colorChange(e){
-    if(player === "one") {
-        e.target.style.backgroundColor = "red";
-    } else if (player === "two") {
+    if(toggle.classList.contains("color")) {
         e.target.style.backgroundColor = "blue";
+    } else {
+        e.target.style.backgroundColor = "red";
     }
-    toggle.classList.toggle("color")
-    player = (player === "one") ? "two" : "one";
     e.target.removeEventListener("click", colorChange);
+    switcher.removeEventListener("click", colorToggle);
+    colorToggle();
     checkForWin();
 }
 //call for event listener
 spaces.forEach(space => space.addEventListener("click", colorChange));
 
 //switch func
+function colorToggle(){
+    toggle.classList.toggle("color")
+}
 const switcher = document.querySelector(".switch");
-switcher.addEventListener("click", () => {toggle.classList.toggle("color")})
+switcher.addEventListener("click", colorToggle);
 
 //popup functions
 function openPopUp() {
         popup.classList.toggle("open-popup");
+        spaces.forEach(space => space.removeEventListener("click", colorChange));
 }
 function closePopUp() {
         popup.classList.remove("open-popup");
+        switcher.addEventListener("click", colorToggle);
+        spaces.forEach(space => space.addEventListener("click", colorChange));
 }
 
 //resets game
@@ -116,4 +122,5 @@ function reset() {
     container.innerHTML = "";
     board();
     spaces.forEach(space => space.addEventListener("click", colorChange))
+    
 }
