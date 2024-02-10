@@ -50,7 +50,6 @@ function win(){
     }
 }
 */
-
 // my iteration/understanding
 function checkForWin() {
     for (let win of winners) {
@@ -67,16 +66,7 @@ function checkForWin() {
         }
     }
 }
-/*
-function colorChange(e) {
-    player = (player === "one") ? "two" : "one";
-    e.target.style.backgroundColor = (player === "one") ? "red" : "blue";
-    toggle.style.backgroundColor = (player === "one") ? "blue" : "red"; 
-    toggle.style.justifyContent = (player === "one") ? "flex-end" : "flex-start";
-    e.target.removeEventListener("click", colorChange)
-    checkForWin();
-}
-*/
+
 //switch func
 function colorToggle(){
     toggle.classList.toggle("color")
@@ -84,11 +74,7 @@ function colorToggle(){
 
 // redo, not working on reset, if red wins
 function colorChange(e){
-    if(toggle.classList.contains("color")) {
-        e.target.style.backgroundColor = "blue";
-    } else {
-        e.target.style.backgroundColor = "red";
-    }
+    e.target.style.backgroundColor = (toggle.classList.contains("color")) ? "blue" : "red";
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
