@@ -54,11 +54,11 @@ function win(){
 function checkForWin() {
     for (let win of winners) {
         for (let i = 0; i < win.length; i++) {
-            if(win[0].style.backgroundColor === "red" && win[1].style.backgroundColor === "red" && win[2].style.backgroundColor === "red") {
+            if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
                 result.innerHTML = "red wins";
                 popUp("open")
             }
-             else if(win[0].style.backgroundColor === "blue" && win[1].style.backgroundColor === "blue" && win[2].style.backgroundColor === "blue") {
+             else if(win[0].classList.contains("blue") && win[1].classList.contains("blue") && win[2].classList.contains("blue")) {
                 result.innerHTML = "blue wins";
                 popUp("open")
             }
@@ -72,18 +72,11 @@ function colorToggle(){
     toggle.classList.toggle("color")
 };
 
-function Image(link){
-    return this.src = link
-}
-
-const red = new Image("./images/red_x.png");
-const blue = new Image("./images/blue_circle.png");
-
-
-
 // redo, not working on reset, if red wins
 function colorChange(e){
-    e.target.innerHTML = (toggle.classList.contains("color")) ? blue.src : red.src;
+    if(!toggle.classList.contains("color")) {
+        e.target.classList.add("red");
+    } else { e.target.classList.add("blue")};
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();

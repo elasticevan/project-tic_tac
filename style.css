@@ -23,6 +23,8 @@ body {
 
 .space {
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 0em;
     margin-bottom: 0em;
     width: 9em;
@@ -30,6 +32,17 @@ body {
     border: solid 1px coral;
     border-radius: 30px;
     cursor:pointer;
+}
+
+.space.blue {
+    background-image: url(./images/blue_circle.png);
+    background-size: cover;
+    background-position: center;
+}
+.space.red {
+    background-image: url(./images/red_x.png);
+    background-size: cover;
+    background-position: center;
 }
 
 .toggle {
