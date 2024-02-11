@@ -54,10 +54,7 @@ function win(){
 function checkForWin() {
     //check to see if all spaces are filled
     spaces.forEach(space => {
-        if (space.classList !== "space") {
-            result.textContent="draw";
-            popUp("open");
-        } else {
+        if (space.classList == "space") {
             for (let win of winners) {
                 for (let i = 0; i < win.length; i++) {
                     if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
@@ -70,7 +67,11 @@ function checkForWin() {
                     }
                 }
             }
-        }})};
+        } else if(space.classList !== "space"){ 
+            result.textContent="draw";
+            popUp("open")
+        }
+    })};
 
 
 
