@@ -11,11 +11,12 @@ const result = document.querySelector(".popup .result");
 //create spaces for board
 let winners;
 let spaces;
+
 function board(){
     for (let i = 0; i < 9; i++) {
         const tile = document.createElement("div");
         tile.classList = "space";
-        container.appendChild(tile)
+        container.appendChild(tile);
     }
     //declare all spaces
     spaces = document.querySelectorAll(".space");
@@ -30,11 +31,10 @@ function board(){
             [spaces[2], spaces[5], spaces[8]],
             [spaces[0], spaces[4], spaces[8]],
             [spaces[2], spaces[4], spaces[6]]
-        ]
-    }
+        ]};
     switcher.addEventListener("click", colorToggle);
     spaces.forEach(space => space.addEventListener("click", colorChange)); 
-}
+};
 board();
 
 /* help from chatGPT
@@ -72,9 +72,18 @@ function colorToggle(){
     toggle.classList.toggle("color")
 };
 
+function Image(link){
+    return this.src = link
+}
+
+const red = new Image("./images/red_x.png");
+const blue = new Image("./images/blue_circle.png");
+
+
+
 // redo, not working on reset, if red wins
 function colorChange(e){
-    e.target.style.backgroundColor = (toggle.classList.contains("color")) ? "blue" : "red";
+    e.target.innerHTML = (toggle.classList.contains("color")) ? blue.src : red.src;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();

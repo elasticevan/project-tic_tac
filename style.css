@@ -6,7 +6,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    flex-direction: column;
+
 }
 .container {
     top: 7em;
@@ -14,17 +15,20 @@ body {
     display: flex;
     width: 27.4em;
     height: 27.4em;
-    border: solid 1px red;
+    border: solid 1px darkolivegreen;
+    border-radius: 20px;
     padding: 2em;
     flex-flow: wrap;
 }
 
 .space {
+    display: flex;
     margin-right: 0em;
     margin-bottom: 0em;
     width: 9em;
     height: 9em;
-    border: solid 1px gold;
+    border: solid 1px coral;
+    border-radius: 30px;
     cursor:pointer;
 }
 
