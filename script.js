@@ -70,6 +70,7 @@ function checkForWin() {
 //switch func
 function colorToggle(){
     toggle.classList.toggle("color")
+    switcher.classList.toggle("blue")
 };
 
 // redo, not working on reset, if red wins
