@@ -52,20 +52,27 @@ function win(){
 */
 // my iteration/understanding
 function checkForWin() {
-    for (let win of winners) {
-        for (let i = 0; i < win.length; i++) {
-            if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
-                result.innerHTML = "red wins";
-                popUp("open")
+    //check to see if all spaces are filled
+    spaces.forEach(space => {
+        if (space.classList !== "space") {
+            result.textContent="draw";
+            popUp("open");
+        } else {
+            for (let win of winners) {
+                for (let i = 0; i < win.length; i++) {
+                    if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
+                        result.textContent= "red wins";
+                        popUp("open");
+                    }
+                    else if(win[0].classList.contains("blue") && win[1].classList.contains("blue") && win[2].classList.contains("blue")) {
+                        result.textContent= "blue wins";
+                        popUp("open");
+                    }
+                }
             }
-             else if(win[0].classList.contains("blue") && win[1].classList.contains("blue") && win[2].classList.contains("blue")) {
-                result.innerHTML = "blue wins";
-                popUp("open")
-            }
-            
-        }
-    }
-}
+        }})};
+
+
 
 //switch func
 function colorToggle(){

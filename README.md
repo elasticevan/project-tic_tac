@@ -9,3 +9,4 @@
 5. create popup window when game is over, include reset button
 6. reset board when a winner is decided
     a. reset all spaces and clear event listeners?
+7. add draw function when no one wins
