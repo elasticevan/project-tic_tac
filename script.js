@@ -50,8 +50,9 @@ function win(){
     }
 }
 */
-let red = "<img src ='./images/red_x.png'>";
-let blue = "<img src ='./images/blue_circle.png'>";
+const red ="<img src ='./images/red_x.png'>";
+const blue ="<img src ='./images/blue_circle.png'>";
+
 
 // my iteration/understanding
 function checkForWin() {
@@ -61,13 +62,12 @@ function checkForWin() {
             result.textContent= "red wins";
             popUp("open");
         }
-        else if(win[0].innerHTML == `${blue}` && win[1].innerHTML === `${blue}` && win[2].innerHTML === `${blue}`) {
+        else if(win[0].innerHTML == `${blue}` && win[1].innerHTML == `${blue}` && win[2].innerHTML == `${blue}`) {
             result.textContent= "blue wins";
             popUp("open");
         }
     }
 }
-
 
 //switch func
 function colorToggle(){
@@ -79,7 +79,6 @@ function colorToggle(){
 function colorChange(e){
     if(!toggle.classList.contains("color")) {
         e.target.innerHTML= red;
-        e.target.classList.add("red");
     } else {
         e.target.innerHTML = blue;
     }
