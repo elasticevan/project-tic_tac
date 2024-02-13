@@ -57,15 +57,13 @@ let blue = "<img src ='./images/blue_circle.png'>";
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
-        for (let i = 0; i < win.length; i++) {
-            if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
-                result.textContent= "red wins";
-                popUp("open");
-            }
-            else if(win[0].innerHTML == `${blue}` && win[1].innerHTML === `${blue}` && win[2].innerHTML === `${blue}`) {
-                result.textContent= "blue wins";
-                popUp("open");
-            }
+        if(win[0].innerHTML === red && win[1].innerHTML === red  && win[2].innerHTML === red ) {
+            result.textContent= "red wins";
+            popUp("open");
+        }
+        else if(win[0].innerHTML == `${blue}` && win[1].innerHTML === `${blue}` && win[2].innerHTML === `${blue}`) {
+            result.textContent= "blue wins";
+            popUp("open");
         }
     }
 }
@@ -81,23 +79,14 @@ function colorToggle(){
 function colorChange(e){
     if(!toggle.classList.contains("color")) {
         e.target.innerHTML= red;
-        e.target.classList.add("red")
+        e.target.classList.add("red");
     } else {
         e.target.innerHTML = blue;
-        e.target.classList.add("blue")
     }
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    spaces.forEach(space => {
-        if(!space.classList == "space") {
-            checkForWin();
-        } else {
-            result.textContent = "draw"
-            popUp("open")
-        }
-    })
-    
+    checkForWin();
 };
 
 //popup function
