@@ -50,29 +50,25 @@ function win(){
     }
 }
 */
+let red = "<img src ='./images/red_x.png'>";
+let blue = "<img src ='./images/blue_circle.png'>";
+
 // my iteration/understanding
 function checkForWin() {
     //check to see if all spaces are filled
-    spaces.forEach(space => {
-        if (space.classList == "space") {
-            for (let win of winners) {
-                for (let i = 0; i < win.length; i++) {
-                    if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
-                        result.textContent= "red wins";
-                        popUp("open");
-                    }
-                    else if(win[0].classList.contains("blue") && win[1].classList.contains("blue") && win[2].classList.contains("blue")) {
-                        result.textContent= "blue wins";
-                        popUp("open");
-                    }
-                }
+    for (let win of winners) {
+        for (let i = 0; i < win.length; i++) {
+            if(win[0].classList.contains("red") && win[1].classList.contains("red") && win[2].classList.contains("red")) {
+                result.textContent= "red wins";
+                popUp("open");
             }
-        } else if(space.classList !== "space"){ 
-            result.textContent="draw";
-            popUp("open")
+            else if(win[0].innerHTML == `${blue}` && win[1].innerHTML === `${blue}` && win[2].innerHTML === `${blue}`) {
+                result.textContent= "blue wins";
+                popUp("open");
+            }
         }
-    })};
-
+    }
+}
 
 
 //switch func
@@ -84,12 +80,24 @@ function colorToggle(){
 // redo, not working on reset, if red wins
 function colorChange(e){
     if(!toggle.classList.contains("color")) {
-        e.target.classList.add("red");
-    } else { e.target.classList.add("blue")};
+        e.target.innerHTML= red;
+        e.target.classList.add("red")
+    } else {
+        e.target.innerHTML = blue;
+        e.target.classList.add("blue")
+    }
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    checkForWin();
+    spaces.forEach(space => {
+        if(!space.classList == "space") {
+            checkForWin();
+        } else {
+            result.textContent = "draw"
+            popUp("open")
+        }
+    })
+    
 };
 
 //popup function
@@ -106,5 +114,5 @@ function popUp(state) {
         container.innerHTML = "";
         board();
     }
-}
+};
 

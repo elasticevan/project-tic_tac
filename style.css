@@ -34,15 +34,9 @@ body {
     cursor:pointer;
 }
 
-.space.blue {
-    background-image: url(./images/blue_circle.png);
-    background-size: cover;
-    background-position: center;
-}
-.space.red {
-    background-image: url(./images/red_x.png);
-    background-size: cover;
-    background-position: center;
+.space img{
+    width: 9em;
+    height: 9em;
 }
 
 .toggle {
