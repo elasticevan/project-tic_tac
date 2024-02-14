@@ -50,14 +50,15 @@ function win(){
     }
 }
 */
-const red ='<img src ="./images/red_x.png">';
-const blue ='<img src ="./images/blue_circle.png">';
+const red ='<img src="./images/red_x.png">';
+const blue ='<img src="./images/blue_circle.png">';
+
 
 // my iteration/understanding
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
-        if(win[0].innerHTML === red && win[1].innerHTML === red  && win[2].innerHTML === red ) {
+        if(win[0].innerHTML == red && win[1].innerHTML == red && win[2].innerHTML == red ) {
             result.textContent= "red wins";
             popUp("open");
         }
