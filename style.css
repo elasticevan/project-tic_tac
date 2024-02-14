@@ -15,10 +15,11 @@ body {
     display: flex;
     width: 27.4em;
     height: 27.4em;
-    border: solid 1px darkolivegreen;
+    border: solid 3px rgb(0, 84, 85);
     border-radius: 20px;
     padding: 2em;
     flex-flow: wrap;
+    background-color:rgb(0, 216, 219);
 }
 
 .space {
@@ -29,9 +30,10 @@ body {
     margin-bottom: 0em;
     width: 9em;
     height: 9em;
-    border: solid 1px coral;
-    border-radius: 30px;
+    border: solid 1px rgb(0, 149, 151);
+    border-radius: 10px;
     cursor:pointer;
+    background-color:rgb(255, 208, 228);
 }
 
 .space img{
