@@ -50,9 +50,8 @@ function win(){
     }
 }
 */
-const red ="<img src ='./images/red_x.png'>";
-const blue ="<img src ='./images/blue_circle.png'>";
-
+const red ='<img src ="./images/red_x.png">';
+const blue ='<img src ="./images/blue_circle.png">';
 
 // my iteration/understanding
 function checkForWin() {
@@ -62,7 +61,7 @@ function checkForWin() {
             result.textContent= "red wins";
             popUp("open");
         }
-        else if(win[0].innerHTML == `${blue}` && win[1].innerHTML == `${blue}` && win[2].innerHTML == `${blue}`) {
+        else if(win[0].innerHTML == blue && win[1].innerHTML == blue && win[2].innerHTML == blue) {
             result.textContent= "blue wins";
             popUp("open");
         }
@@ -77,11 +76,7 @@ function colorToggle(){
 
 // redo, not working on reset, if red wins
 function colorChange(e){
-    if(!toggle.classList.contains("color")) {
-        e.target.innerHTML= red;
-    } else {
-        e.target.innerHTML = blue;
-    }
+    e.target.innerHTML = (toggle.classList.contains("color")) ? blue : red;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
