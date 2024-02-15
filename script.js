@@ -58,6 +58,7 @@ const blue ='<img src="./images/blue_circle.png">';
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
+        for (let i=0;i<win.length;i++){
         if(win[0].innerHTML === red && win[1].innerHTML === red && win[2].innerHTML === red ) {
             result.textContent= "red wins";
             popUp("open");
@@ -67,9 +68,10 @@ function checkForWin() {
             popUp("open");
         }
         //good morning, this is where you left off. beep boop bitch
-        else if(!win.querySelector('img')) 
+        else if(!win[i].querySelector('img')) 
         result.textContent="draw";
         popUp("open")
+    }
     }
 
 }
