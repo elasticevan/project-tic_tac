@@ -50,23 +50,28 @@ function win(){
     }
 }
 */
+//watch for spaces in image links or between equals sign
 const red ='<img src="./images/red_x.png">';
 const blue ='<img src="./images/blue_circle.png">';
-
 
 // my iteration/understanding
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
-        if(win[0].innerHTML == red && win[1].innerHTML == red && win[2].innerHTML == red ) {
+        if(win[0].innerHTML === red && win[1].innerHTML === red && win[2].innerHTML === red ) {
             result.textContent= "red wins";
             popUp("open");
         }
-        else if(win[0].innerHTML == blue && win[1].innerHTML == blue && win[2].innerHTML == blue) {
+        else if(win[0].innerHTML === blue && win[1].innerHTML === blue && win[2].innerHTML === blue) {
             result.textContent= "blue wins";
             popUp("open");
         }
+        //good morning, this is where you left off. beep boop bitch
+        else if(!win.querySelector('img')) 
+        result.textContent="draw";
+        popUp("open")
     }
+
 }
 
 //switch func
@@ -81,7 +86,16 @@ function colorChange(e){
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    checkForWin();
+    //play with for...of rather than forEach
+    for(const space of spaces){
+        if(space.innerHTML == '') {
+            checkForWin();
+        } else {
+            result.textContent="draw";
+            popUp("open")
+        }
+    }
+       
 };
 
 //popup function
