@@ -59,20 +59,17 @@ let count = 0;
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
-        //if there are spaces that are empty run this, if no space is empty run draw
-        if(win[0].innerHTML === red && win[1].innerHTML === red && win[2].innerHTML === red ) {
+        // (chatGPT) use every()method to check if all spaces in the win array contain the same content,
+        // instead of win[0].innerHTML === red && win[1].innerHTML === red && etc....
+        if(win.every(space => space.innerHTML === red)) {
             result.textContent= "red wins";
-            popUp("open");
+            popUp('open');
         }
-        else if(win[0].innerHTML === blue && win[1].innerHTML === blue && win[2].innerHTML === blue) {
+        else if(win.every(space => space.innerHTML === blue)) {
             result.textContent= "blue wins";
-            popUp("open");
+            popUp('open');
         }
-        else if(count === 9) {
-            result.textContent="draw";
-            popUp("open");
-        }
-    } 
+    }
 }
 
 //switch func
@@ -84,24 +81,24 @@ function colorToggle(){
 // redo, not working on reset, if red wins
 function colorChange(e){
     count++;
-    console.log(count);
     e.target.innerHTML = (toggle.classList.contains("color")) ? blue : red;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
     checkForWin();
+    console.log(Array.isArray(spaces)); //false, not an array thus won't be able to use every() method fukn shiet
 };
 
 //popup function
 function popUp(state) {
-    if(state === "open") {
+    if(state === 'open') {
         popup.classList.toggle("open-popup");
         //reset button
         const resetBtn = document.querySelector("#reset");
         resetBtn.addEventListener("click", () => popUp("close"));
         //remove clicks on spaces
         spaces.forEach(space => space.removeEventListener("click", colorChange));
-    } else if (state === "close") {
+    } else if (state === 'close') {
         popup.classList.remove("open-popup");
         container.innerHTML = "";
         board();
