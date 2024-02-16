@@ -55,6 +55,7 @@ const red ='<img src="./images/red_x.png">';
 const blue ='<img src="./images/blue_circle.png">';
 
 // my iteration/understanding
+let count = 0;
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
@@ -67,7 +68,11 @@ function checkForWin() {
             result.textContent= "blue wins";
             popUp("open");
         }
-    }
+        else if(count === 9) {
+            result.textContent="draw";
+            popUp("open");
+        }
+    } 
 }
 
 //switch func
@@ -78,19 +83,13 @@ function colorToggle(){
 
 // redo, not working on reset, if red wins
 function colorChange(e){
+    count++;
+    console.log(count);
     e.target.innerHTML = (toggle.classList.contains("color")) ? blue : red;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    spaces.forEach(space => {
-        if (space.querySelector(null)) {
-            checkForWin();
-            return
-        } else {
-            result.textContent='draw';
-            popUp('open')
-        }
-    })
+    checkForWin();
 };
 
 //popup function
@@ -106,6 +105,7 @@ function popUp(state) {
         popup.classList.remove("open-popup");
         container.innerHTML = "";
         board();
+        count = 0;
     }
 };
 
