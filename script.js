@@ -58,7 +58,7 @@ const blue ='<img src="./images/blue_circle.png">';
 function checkForWin() {
     //check to see if all spaces are filled
     for (let win of winners) {
-        for (let i=0;i<win.length;i++){
+        //if there are spaces that are empty run this, if no space is empty run draw
         if(win[0].innerHTML === red && win[1].innerHTML === red && win[2].innerHTML === red ) {
             result.textContent= "red wins";
             popUp("open");
@@ -67,13 +67,7 @@ function checkForWin() {
             result.textContent= "blue wins";
             popUp("open");
         }
-        //good morning, this is where you left off. beep boop bitch
-        else if(!win[i].querySelector('img')) 
-        result.textContent="draw";
-        popUp("open")
     }
-    }
-
 }
 
 //switch func
@@ -88,16 +82,15 @@ function colorChange(e){
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    //play with for...of rather than forEach
-    for(const space of spaces){
-        if(space.innerHTML == '') {
+    spaces.forEach(space => {
+        if (space.querySelector(null)) {
             checkForWin();
+            return
         } else {
-            result.textContent="draw";
-            popUp("open")
+            result.textContent='draw';
+            popUp('open')
         }
-    }
-       
+    })
 };
 
 //popup function
