@@ -56,7 +56,9 @@ const blue ='<img src="./images/blue_circle.png">';
 
 // my iteration/understanding
 let count = 0;
+let val;
 function checkForWin() {
+    val = true;
     //check to see if all spaces are filled
     for (let win of winners) {
         // (chatGPT) use every()method to check if all spaces in the win array contain the same content,
@@ -68,8 +70,12 @@ function checkForWin() {
         else if(win.every(space => space.innerHTML === blue)) {
             result.textContent= "blue wins";
             popUp('open');
+        } 
+        else if(count === 9) {
+            val = false;
         }
     }
+    return val;
 }
 
 //switch func
@@ -80,11 +86,12 @@ function colorToggle(){
 
 //check if all spaces are filled
 function checkSpace() {
-    if(spaces.every(space => space.querySelector('img'))) {
-        console.log('true');
-    } else {
-        console.log("false");
+    checkForWin();
+    if (val === false ) {
+        result.textContent='draw';
+        popUp('open');
     }
+    console.log(val)
 }
 
 // redo, not working on reset, if red wins
@@ -93,9 +100,8 @@ function colorChange(e){
     e.target.innerHTML = (toggle.classList.contains("color")) ? blue : red;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
-    checkSpace();
     colorToggle();
-    checkForWin();
+    checkSpace();
 };
 
 //popup function
