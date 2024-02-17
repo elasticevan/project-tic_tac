@@ -56,28 +56,26 @@ const blue ='<img src="./images/blue_circle.png">';
 
 // my iteration/understanding
 let count = 0;
-let val;
 function checkForWin() {
     //check to see if all spaces are filled
-        for (let win of winners) {
-            // (chatGPT) use every()method to check if all spaces in the win array contain the same content,
-            // instead of win[0].innerHTML === red && win[1].innerHTML === red && etc....
-            if(win.every(space => space.innerHTML === red)) {
-                result.textContent= "red wins";
-                popUp('open');
-                return; //exit loop once winner is found
-            }
-            else if(win.every(space => space.innerHTML === blue)) {
-                result.textContent= "blue wins";
-                popUp('open');
-                return; //exit loop once winner is found
-            }
+    for (let win of winners) {
+        // (chatGPT) use every() method to check if all spaces in the win array contain the same content,
+        // instead of win[0].innerHTML === red && win[1].innerHTML === red && etc....
+        if(win.every(space => space.innerHTML === red)) {
+            result.textContent= "red wins";
+            popUp('open');
+            return; //exit loop once winner is found *chatGPT assist
         }
+        else if(win.every(space => space.innerHTML === blue)) {
+            result.textContent= "blue wins";
+            popUp('open');
+            return; //exit loop once winner is found
+        }
+    }
     //if no winner is found after checking all winners
     if(count === 9) {
         result.textContent='draw';
         popUp('open');
-
     }
 }
 
