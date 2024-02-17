@@ -78,15 +78,24 @@ function colorToggle(){
     switcher.classList.toggle("blue")
 };
 
+//check if all spaces are filled
+function checkSpace() {
+    if(spaces.every(space => space.querySelector('img'))) {
+        console.log('true');
+    } else {
+        console.log("false");
+    }
+}
+
 // redo, not working on reset, if red wins
 function colorChange(e){
     count++;
     e.target.innerHTML = (toggle.classList.contains("color")) ? blue : red;
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
+    checkSpace();
     colorToggle();
     checkForWin();
-    console.log(Array.isArray(spaces)); //false, not an array thus won't be able to use every() method fukn shiet
 };
 
 //popup function
