@@ -58,24 +58,27 @@ const blue ='<img src="./images/blue_circle.png">';
 let count = 0;
 let val;
 function checkForWin() {
-    val = true;
     //check to see if all spaces are filled
-    for (let win of winners) {
-        // (chatGPT) use every()method to check if all spaces in the win array contain the same content,
-        // instead of win[0].innerHTML === red && win[1].innerHTML === red && etc....
-        if(win.every(space => space.innerHTML === red)) {
-            result.textContent= "red wins";
-            popUp('open');
+        for (let win of winners) {
+            // (chatGPT) use every()method to check if all spaces in the win array contain the same content,
+            // instead of win[0].innerHTML === red && win[1].innerHTML === red && etc....
+            if(win.every(space => space.innerHTML === red)) {
+                result.textContent= "red wins";
+                popUp('open');
+                return; //exit loop once winner is found
+            }
+            else if(win.every(space => space.innerHTML === blue)) {
+                result.textContent= "blue wins";
+                popUp('open');
+                return; //exit loop once winner is found
+            }
         }
-        else if(win.every(space => space.innerHTML === blue)) {
-            result.textContent= "blue wins";
-            popUp('open');
-        } 
-        else if(count === 9) {
-            val = false;
-        }
+    //if no winner is found after checking all winners
+    if(count === 9) {
+        result.textContent='draw';
+        popUp('open');
+
     }
-    return val;
 }
 
 //switch func
@@ -85,15 +88,6 @@ function colorToggle(){
 };
 
 //check if all spaces are filled
-function checkSpace() {
-    checkForWin();
-    if (val === false ) {
-        result.textContent='draw';
-        popUp('open');
-    }
-    console.log(val)
-}
-
 // redo, not working on reset, if red wins
 function colorChange(e){
     count++;
@@ -101,7 +95,7 @@ function colorChange(e){
     e.target.removeEventListener("click", colorChange);
     switcher.removeEventListener("click", colorToggle);
     colorToggle();
-    checkSpace();
+    checkForWin();
 };
 
 //popup function
